@@ -15,7 +15,5 @@ bikes_10_df$datetimes <- datetimes
 ggplot(aes(x = datetimes, y =AVAILABLE.BIKES, colour=ADDRESS), data = bikes_10_df) + geom_point() +
   scale_x_datetime(date_labels = "%H:%M") + guides(colour=FALSE) + geom_line(aes(group = ADDRESS))
 
-
-
-
-
+summary <- aggregate(bikes_df$AVAILABLE.BIKES, by=list(bikes_df$ADDRESS), FUN=sum)
+res[order(summary$x, decreasing=TRUE), ]
